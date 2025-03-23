@@ -7,6 +7,16 @@ import { checkSessionIdExists } from '../middlewares/check-session-id-exists'
 
 // Cookies -> Formas de manter contexto entre requisições
 
+// Testes
+// Unitarios: unidade da sua aplicação
+// Integração: comunicação entre duas ou mais unidades
+// e2e ponta a ponta: simutam um usuario operando na nossa aplicação
+
+// front-end: abre a pagina de login, digite o texto diego@rocketseat.com.br no campo com ID email,
+// back-end: chamadas HTTP, WebSockets
+
+// Piramide de testes: E2E (näo dependem de nenhuma tecnotogia, näo dependem de arquitetura)
+
 export async function transactionsRoute(app: FastifyInstance) {
   // Roda antes de todas as requisições desse plugin, portanto utilizar ele para fazer uma verificação global é o caminho. Se colocar esse hook antes das rotas no arquivo do server ele vai ser chamado para todas as rotas cridas
   // app.addHook('preHandler', async (request, reply) => {
@@ -18,7 +28,7 @@ export async function transactionsRoute(app: FastifyInstance) {
     {
       preHandler: [checkSessionIdExists],
     },
-    async (request) => {
+    async request => {
       const { sessionId } = request.cookies
 
       const transactions = await knex('transactions')
