@@ -7,4 +7,5 @@ app
   })
   .then(() => {
     console.log('HTTP Server Running!')
+    console.log(`Server running on port ${env.PORT}`)
   })
